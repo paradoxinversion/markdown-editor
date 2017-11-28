@@ -1,0 +1,13 @@
+doctype html
+html 
+  include includes/head
+  body
+    div.main-container
+      include includes/sidebar
+      div.main-work-area
+        include includes/status
+        div.work-panel-container
+          include includes/editor
+          include includes/preview
+    script(type="application/javascript" src="js/axios/dist/axios.min.js")
+    script(type="application/javascript" src="js/main.js")
