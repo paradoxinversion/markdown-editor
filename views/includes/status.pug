@@ -1,5 +1,8 @@
 div.status-bar
   p#current-file-name ExampleFile.md
+  div(id="file-name-edit" class="hidden")
+    input#file-rename-input
+    button#rename Rename
   div.horizontal-options
     p 999 Words
-    a(href="#") Save
+    button(id="save") Save

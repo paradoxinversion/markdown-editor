@@ -1,0 +1,7 @@
+CREATE TABLE files(
+  id SERIAL PRIMARY KEY,
+  name VARCHAR NOT NULL,
+  created TIMESTAMP NOT NULL,
+  last_modified TIMESTAMP NOT NULL,
+  markdown VARCHAR
+);
