@@ -5,17 +5,30 @@
   "main": "app.js",
   "scripts": {
     "db:prepare": "createdb markdown_editor && psql markdown_editor < ./database/schema.sql",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "db:prepare_dev": "createdb markdown_editor_test && psql markdown_editor_test < ./database/schema.sql",
+    "db:reset": "dropdb markdown_editor && createdb markdown_editor && psql markdown_editor < ./database/schema.sql",
+    "db:reset_dev": "dropdb markdown_editor_test && createdb markdown_editor_test && psql markdown_editor_test < ./database/schema.sql",
+    "test": "mocha --reporter spec"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
+    "bcrypt": "^1.0.3",
     "body-parser": "^1.18.2",
+    "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "marked": "^0.3.6",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "pg-promise": "^7.3.2",
     "pug": "^2.0.0-rc.4"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "mocha": "^4.0.1"
   }
 }

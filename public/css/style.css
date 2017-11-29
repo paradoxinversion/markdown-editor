@@ -147,6 +147,7 @@ blockquote{
   padding: 6px;
   border-top: 1px solid #8c8c8c;
   /*border: 1px solid #8c8c8c;*/
+  cursor: pointer;
 }
 
 .work-panel-container{
@@ -213,12 +214,10 @@ blockquote{
 
 #file-name-edit{
   margin-right: auto;
-  
+
 }
 
-.hidden{
-  display: none;
-}
+
 .full-width{
   width: 100%;
   height: 100%;
@@ -227,4 +226,30 @@ blockquote{
 .light-italic{
   font-weight: 100;
 
+}
+.modal-container{
+  position: absolute;
+  display: flex;
+  background-color: rgba(52, 61, 70, 0.8);
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+
+}
+.modal{
+  background-color: white;
+
+  width: 500px;
+  height: 300px;
+  border: 5px solid black;
+  border-radius: 10px;
+}
+
+.vertical-form{
+  display: flex;
+  flex-direction: column;
+}
+.hidden{
+  display: none;
 }
