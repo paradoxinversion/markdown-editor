@@ -253,3 +253,8 @@ blockquote{
 .hidden{
   display: none;
 }
+
+.modal-close{
+  cursor: pointer;
+  font-size: 20px;
+}

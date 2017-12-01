@@ -1,7 +1,8 @@
 CREATE TABLE users(
   id SERIAL PRIMARY KEY,
   name VARCHAR NOT NULL,
-  password VARCHAR NOT NULL
+  password VARCHAR NOT NULL,
+  last_edited INT
 );
 
 CREATE TABLE files(

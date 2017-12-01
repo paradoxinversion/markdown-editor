@@ -6,5 +6,8 @@ module.exports = {
   getUser: db.getUser,
   addUser: db.addUser,
   getUserFiles: db.getUserFiles,
-  checkPassword: db.checkPassword
+  checkPassword: db.checkPassword,
+  getUserById: db.getUserById,
+  getFileById: db.getFileById,
+  deleteFile: db.deleteFile
 };

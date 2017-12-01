@@ -2,7 +2,7 @@ div.sidebar
   div.logo
     p mmmmarkdown
     p.light-italic a markdown editor
-  div.file-selection-area
+  div(class="file-selection-area" id="file-selection-area")
     div(class="file" id="sidebar-user-name")
       p.file-name Username
       i(class="fa fa-user-o file-icon" aria-hidden="false")
@@ -12,12 +12,10 @@ div.sidebar
     div(class="file" id="sidebar-sign-in")
       p.file-name Sign In
       i(class="fa fa-sign-in file-icon" aria-hidden="false")
-    div(class="file" id="sidebar-sign-out")
+    div(class="file hidden" id="sidebar-sign-out")
       p.file-name Sign Out
       i(class="fa fa-sign-out file-icon " aria-hidden="false")
-    div.file
-      p.file-name Blah Blah
-      i(class="fa fa-trash-o file-icon" aria-hidden="false")
     div(class="file" id="sidebar-new-file")
       p.file-name New File
       i(class="fa fa-plus file-icon" aria-hidden="false")
+    div(class="file-selection-area" id="user-file-area")

@@ -1,14 +1,15 @@
 div(class="modal-container hidden" id="auth-modal-container")  
   div.modal
+    p(class="modal-close" id="modal-close") &times;
     div(id="sign-in-form-container" class="hidden")
       h1 Sign In
       form(name="sign-in-form" id="sign-in-form" class="vertical-form ")
-        input(type="text" id="sign-in-username" name="screen-name" placeholder="Username" form="sign-in-form" required="true")
-        input(type="text" id="sign-in-password" name="password" placeholder="Password" form="sign-in-form" required="true")
-        button(form="sign-in-form" id="btn-confirm-sign-in") Sign In
+        input(type="text" id="sign-in-username" name="sign-in-username" placeholder="Username" form="sign-in-form" required="true")
+        input(type="password" id="sign-in-password" name="sign-in-password" placeholder="Password" form="sign-in-form" required="true")
+        button(type="submit" form="sign-in-form" id="btn-confirm-sign-in") Sign In
     div(id="sign-up-form-container" class="hidden")
       h1 Sign Up
       form(name="sign-up-form" id="sign-up-form" class="vertical-form ")
-        input(type="text" id="sign-up-password" name="screen-name" placeholder="Username" form="sign-up-form" required="true")
-        input(type="text" id="sign-up-password" name="password" placeholder="Password" form="sign-up-form" required="true")
+        input(type="text" id="sign-up-username" name="sign-up-username" placeholder="Username" form="sign-up-form" required="true")
+        input(type="password" id="sign-up-password" name="sign-up-password" placeholder="Password" form="sign-up-form" required="true")
         button(type="submit" form="sign-up-form" id="btn-confirm-sign-up") Sign Up
