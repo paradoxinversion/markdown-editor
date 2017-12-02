@@ -3,6 +3,7 @@ const workspace= (()=>{
   const editor = document.getElementById("editor");
   const preview = document.getElementById("preview-pane");
   const saveButton = document.getElementById("save");
+
   const updateMarkdown = function updateMarkdown(){
     preview.innerHTML = marked(editor.value);
   };
@@ -16,17 +17,21 @@ const workspace= (()=>{
   const setEditorText = function(editorText){
     editor.value = editorText;
   };
+
   const getEditorText = function(){
     return editor.value;
   };
+
   const saveFile = function(){
-    console.log(workspace.getEditorText())
     const fileText = workspace.getEditorText();
+    let markdownId;
     const payload = {
       fileName: currentFileName.getFileName(),
       fileText,
-      user
+      user,
+      markdownId
     };
+
     fetch("http://localhost:3000/", {
       headers: {
         'Content-Type': 'application/json'
@@ -35,8 +40,7 @@ const workspace= (()=>{
       body: JSON.stringify(payload),
       credentials: 'include'
     })
-      .then(response =>{
-        console.log(response);
+      .then(() =>{
         sidebar.updateUserFiles();
       })
       .catch(e => {
@@ -50,7 +54,6 @@ const workspace= (()=>{
   saveButton.addEventListener("click", function(){
     saveFile();
   });
-
 
   return {
     loadNewMarkdown,
@@ -122,7 +125,7 @@ const sidebar = (()=>{
           });
       })
       .catch(e => {
-        console.log(e);
+        throw e;
       });
 
   };
@@ -176,14 +179,13 @@ const sidebar = (()=>{
       .then(response => {
         response.json()
           .then(fileJSON =>{
-            console.log(fileJSON.markdown);
             workspace.setEditorText(fileJSON.markdown);
             currentFileName.updateFileNameLabel(fileJSON.name);
             workspace.updateMarkdown();
           });
       })
       .catch(e => {
-        console.log(e);
+
         throw e;
       });
   };
@@ -301,6 +303,7 @@ const authorizationModal = (()=>{
         throw e;
       });
   });
+  
   signOutButton.addEventListener("click", function(event){
     event.preventDefault();
     fetch("http://localhost:3000/users/sign-out", {

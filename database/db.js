@@ -93,24 +93,28 @@ const getFileById = async function getFileByid(fileId, userId){
  * @returns {string} that password, encrypted.
  */
 const saveFile = async function saveFile(fileName, content, user){
-  console.log('USER', user);
   const sql = 'INSERT INTO files(owner, name, created, last_modified, markdown) VALUES ($1, $2, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP, $3) RETURNING *';
   return await db.task("save-file-task", async t => {
     try {
       const file = await t.oneOrNone('SELECT * FROM files WHERE name = $1 AND owner = $2', [fileName, user.id]);
       if (file){
-        // console.log(file);
-        // const error = new Error("Filename Exists");
-        // error.code = 409;
-        // throw error;
-        console.log("File", file)
-        console.log("New", content)
-        await t.one('UPDATE files SET markdown =$1 WHERE id= $2', [content, file.id]);
-        await t.none('UPDATE users SET last_edited =$1 WHERE id = $2', [file.id, user.id])
+        try{
+          const updatedFile = await t.one('UPDATE files SET markdown= $1, name= $2 WHERE id= $3 RETURNING *', [content, fileName, file.id]);
+          await t.none('UPDATE users SET last_edited =$1 WHERE id = $2', [file.id, user.id]);
+          return updatedFile;
+        }catch (e){
+          console.log(e);
+        }
+
       } else{
-        const newFile = await t.one(sql, [user.id, fileName, content]);
-        await t.none('UPDATE users SET last_edited =$1 WHERE id = $2', [newFile.id, user.id]);
-        return newFile;
+        try{
+          const newFile = await t.one(sql, [user.id, fileName, content]);
+          await t.none('UPDATE users SET last_edited =$1 WHERE id = $2', [newFile.id, user.id]);
+          return newFile;
+        } catch (e){
+          console.log(e);
+        }
+
       }
     } catch (e){
       throw e;
